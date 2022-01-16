@@ -60,7 +60,11 @@ sysinfo.txt
 crashlytics-build.properties
 
 *.png
+*.png.meta
 *.jpg
+*.jpeg
+*.aar.meta
+*.jar.meta
 
 #Firebase
 *.json
