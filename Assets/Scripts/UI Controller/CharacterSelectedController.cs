@@ -52,7 +52,7 @@ public class CharacterSelectedController : MonoBehaviour
             if (imageNo == PlayerPrefs.GetInt(i.ToString(), -1))
             {
                 PlayerPrefs.SetInt("selectImage", imageNo);
-                Start();
+                init();
                 return;
             }
         }
