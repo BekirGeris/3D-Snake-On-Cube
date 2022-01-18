@@ -45,6 +45,12 @@ public class SnakeMoveController : MonoBehaviour
             //store position history
             positionHistory.Insert(0, transform.position);
 
+            if(positionHistory.Count == 500)
+            {
+                positionHistory.RemoveAt(positionHistory.Count - 1);
+            }
+            Debug.Log(positionHistory.Count);
+
             //move body parts
             int index = 0;
             foreach (var body in bodyParts)
@@ -53,7 +59,6 @@ public class SnakeMoveController : MonoBehaviour
                 body.transform.position = point;
                 index++;
             }
-            Debug.Log(positionHistory.Count);
         }
 
         if (grow)

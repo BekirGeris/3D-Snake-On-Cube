@@ -6,35 +6,41 @@ public class SnakeGravity : MonoBehaviour
 {
     const float G = 667.4F;
 
-    public Rigidbody rb;
+    private List<Transform> targetObjects = new List<Transform>();
+    private Cube[] cubes;
 
-    public GameObject targetObject;
+    [SerializeField] private Rigidbody rb;
+
+    private Transform nearestTargetObject;
 
     private void Start()
     {
-
+        cubes = FindObjectsOfType<Cube>();
+        foreach(var cube in cubes)
+        {
+            targetObjects.Add(cube.transform);
+        }
     }
     private void FixedUpdate()
     {
-        
-        //SnakeGravity[] snakeGravities = FindObjectsOfType<SnakeGravity>();
-        //foreach(SnakeGravity snakeGravity in snakeGravities)
-        //{
-        //    if(snakeGravity != this)
-        //    {
-        //        Attract(snakeGravity);
-        //    }
-        //}
+        float distance = float.MaxValue;
+        int nearestTargetIndex = 0;
+        for(int i = 0;i < targetObjects.Count; i++)
+        {
+            if((targetObjects[i].transform.position - rb.position).magnitude <= distance)
+            {
+                distance = (targetObjects[i].transform.position - rb.position).magnitude;
+                nearestTargetIndex = i;
+            }
+        }
+        nearestTargetObject = targetObjects[nearestTargetIndex];
 
-        Attract(this);
+        Attract(nearestTargetObject, distance);
     }
 
-    void Attract(SnakeGravity objToAttract)
+    void Attract(Transform rbToAttract, float distance)
     {
-        GameObject rbToAttract = objToAttract.targetObject;
-
-        Vector3 direction = rbToAttract.transform.position - rb.position;
-        float distance = direction.magnitude;
+        Vector3 direction = rbToAttract.position - rb.position;
 
         float forceMagnitude = G * (rb.mass * 1) / Mathf.Pow(distance, 2);
         Vector3 force = direction.normalized * forceMagnitude;
