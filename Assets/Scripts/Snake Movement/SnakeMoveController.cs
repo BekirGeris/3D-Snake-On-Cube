@@ -6,6 +6,7 @@ using Snake.Data;
 public class SnakeMoveController : MonoBehaviour
 {
     [SerializeField] private GameData gameData;
+    [SerializeField] private GameObject BodyPrefabRed;
     [SerializeField] private GameObject BodyPrefab;
 
     private List<GameObject> bodyParts = new List<GameObject>();
@@ -13,7 +14,8 @@ public class SnakeMoveController : MonoBehaviour
 
     public float moveSpeed = 5;
     public float steerSpeed = 90;
-    public int gap = 10;
+    public int gap = Mathf.Abs(10);
+    public int fark = 5;
 
     public bool rigtFlag = false;
     public bool leftFlag = false;
@@ -22,7 +24,10 @@ public class SnakeMoveController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        for (int i = 0;i<= 100; i++)
+        {
+            growSnake();
+        }
     }
 
     // Update is called once per frame
@@ -45,19 +50,22 @@ public class SnakeMoveController : MonoBehaviour
             //store position history
             positionHistory.Insert(0, transform.position);
 
-            if(positionHistory.Count == 500)
+            if(positionHistory.Count == 5000)
             {
                 positionHistory.RemoveAt(positionHistory.Count - 1);
             }
             Debug.Log(positionHistory.Count);
 
             //move body parts
-            int index = 0;
-            foreach (var body in bodyParts)
+            if(positionHistory.Count > fark)
             {
-                Vector3 point = positionHistory[Mathf.Min(index * gap, positionHistory.Count - 1)];
-                body.transform.position = point;
-                index++;
+                int index = fark;
+                foreach (var body in bodyParts)
+                {
+                    Vector3 point = positionHistory[Mathf.Min(index * gap, positionHistory.Count - 1)];
+                    body.transform.position = point;
+                    index++;
+                }
             }
         }
 
@@ -70,7 +78,15 @@ public class SnakeMoveController : MonoBehaviour
 
     private void growSnake()
     {
-        GameObject body = Instantiate(BodyPrefab);
+        GameObject body;
+        if (bodyParts.Count <= 5)
+        {
+            body = Instantiate(BodyPrefabRed);
+        }
+        else
+        {
+            body = Instantiate(BodyPrefab);
+        }
         bodyParts.Add(body);
     }
 
