@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SnakeGravity : MonoBehaviour
 {
-    const float G = 10000f;
+    const float G = 1000f;
 
     private List<Transform> targetObjects = new List<Transform>();
     private Cube[] cubes;

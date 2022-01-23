@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 3256750376669371062}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 11.714075, y: 26.565346, z: -2247.9058}
-  m_LocalScale: {x: 1.554904, y: 0.042243786, z: 2.018765}
+  m_LocalScale: {x: 0.9421107, y: 0.0039314684, z: 1.1218628}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -51,7 +51,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3256750376669371062}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -147,6 +147,6 @@ MonoBehaviour:
   moveSpeed: 5
   steerSpeed: 90
   gap: 1
+  fark: 5
   rigtFlag: 0
   leftFlag: 0
-  grow: 0
