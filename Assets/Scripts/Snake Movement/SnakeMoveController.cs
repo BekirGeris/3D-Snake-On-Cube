@@ -28,7 +28,7 @@ public class SnakeMoveController : MonoBehaviour
     void Start()
     {
         localScale = BodyPrefab.transform.localScale;
-        for (int i = 0;i<= 200; i++)
+        for (int i = 0;i<= 1; i++)
         {
             growSnake();
         }
@@ -73,7 +73,7 @@ public class SnakeMoveController : MonoBehaviour
         }
     }
     private void moveBodyParts()
-    {
+    { //
         //move body parts
         if (positionHistory.Count > fark)
         {
