@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Snake.Data;
+using Snake.UIController;
 
 public class SnakeMoveController : MonoBehaviour
 {
     [SerializeField] private GameData gameData;
     [SerializeField] private GameObject BodyPrefabRed;
     [SerializeField] private GameObject BodyPrefab;
+    [SerializeField] private EatController eatController;
+    [SerializeField] private GamePanelController gamePanelController;
 
     private List<GameObject> bodyParts = new List<GameObject>();
     private List<Vector3> positionHistory = new List<Vector3>();
@@ -21,14 +24,14 @@ public class SnakeMoveController : MonoBehaviour
     public int gap = Mathf.Abs(10);
     public int fark = 5;
 
-    public bool rigtFlag = false;
-    public bool leftFlag = false;
+    private bool rigtFlag = false;
+    private bool leftFlag = false;
 
     // Start is called before the first frame update
     void Start()
     {
         localScale = BodyPrefab.transform.localScale;
-        for (int i = 0;i<= 1; i++)
+        for (int i = 0;i<= 100; i++)
         {
             growSnake();
         }
@@ -105,6 +108,25 @@ public class SnakeMoveController : MonoBehaviour
                 }
                 index++;
             }
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.name.Equals("eat"))
+        {
+            collision.gameObject.SetActive(false);
+            eatController.randomItemOpenFromList();
+            growSnake();
+            growSnake();
+            growSnake();
+            growSnake();
+            growSnake();
+        }
+        Debug.Log(collision.gameObject.name);
+        if (collision.gameObject.name.Equals("snakeBlue(Clone)"))
+        {
+            gamePanelController.openAdsPanel();
         }
     }
 

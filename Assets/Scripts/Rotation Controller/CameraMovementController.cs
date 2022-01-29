@@ -20,8 +20,7 @@ public class CameraMovementController : MonoBehaviour, IPointerDownHandler, IPoi
 
     private void Start()
     {
-        camera.transform.position = cameraTransforms[0].position;
-        camera.transform.rotation = cameraTransforms[0].rotation;
+        setCameraTrasformWithIndex(0);
     }
     // Update is called once per frame
     void Update()
@@ -49,24 +48,28 @@ public class CameraMovementController : MonoBehaviour, IPointerDownHandler, IPoi
             if (distanceY < 0 && Mathf.Abs(distanceY) > Mathf.Abs(distanceX))
             {
                 //up
+                Debug.Log("up");
                 setSelectedCameraTransform(1);
             }
 
             if (distanceY > 0 && Mathf.Abs(distanceY) > Mathf.Abs(distanceX))
             {
                 //down
+                Debug.Log("down");
                 setSelectedCameraTransform(2);
             }
 
             if (distanceX < 0 && Mathf.Abs(distanceX) > Mathf.Abs(distanceY))
             {
                 //right
+                Debug.Log("right");
                 setSelectedCameraTransform(3);
             }
 
             if (distanceX > 0 && Mathf.Abs(distanceX) > Mathf.Abs(distanceY))
             {
                 //left
+                Debug.Log("left");
                 setSelectedCameraTransform(4);
             }
         }
@@ -77,171 +80,178 @@ public class CameraMovementController : MonoBehaviour, IPointerDownHandler, IPoi
         int cameraIndex = 0;
         for (int i = 0; i < cameraTransforms.Count; i++)
         {
-            if (camera.transform == cameraTransforms[i])
+            if (camera.transform.position == cameraTransforms[i].position)
             {
                 cameraIndex = i;
+                Debug.Log("cameraIndex  " + cameraIndex + " key " + key);
             }
         }
 
         //cameraIndex = 0
         if (cameraIndex == 0)
         {
-            if(key == 1)
+            if(key == 1)//up 
             {
-
+                setCameraTrasformWithIndex(2);
             }
-            else if(key == 2)
+            else if(key == 2)//down
             {
-
+                setCameraTrasformWithIndex(4);
             }
-            else if (key == 3)
+            else if (key == 3)//right
             {
-
+                setCameraTrasformWithIndex(1);
             }
-            else if (key == 4)
+            else if (key == 4)//left
             {
-
+                setCameraTrasformWithIndex(3);
             }
         }
         //cameraIndex = 1
         if (cameraIndex == 1)
         {
-            if (key == 1)
+            if (key == 1)//up 
             {
-
+                setCameraTrasformWithIndex(3);
             }
-            else if (key == 2)
+            else if (key == 2)//down
             {
-
+                setCameraTrasformWithIndex(5);
             }
-            else if (key == 3)
+            else if (key == 3)//right
             {
-
+                setCameraTrasformWithIndex(2);
             }
-            else if (key == 4)
+            else if (key == 4)//left
             {
-
+                setCameraTrasformWithIndex(0);
             }
         }
         //cameraIndex = 2
         if (cameraIndex == 2)
         {
-            if (key == 1)
+            if (key == 1)//up 
             {
-
+                setCameraTrasformWithIndex(0);
             }
-            else if (key == 2)
+            else if (key == 2)//down
             {
-
+                setCameraTrasformWithIndex(6);
             }
-            else if (key == 3)
+            else if (key == 3)//right
             {
-
+                setCameraTrasformWithIndex(3);
             }
-            else if (key == 4)
+            else if (key == 4)//left
             {
-
+                setCameraTrasformWithIndex(1);
             }
         }
         //cameraIndex = 3
         if (cameraIndex == 3)
         {
-            if (key == 1)
+            if (key == 1)//up 
             {
-
+                setCameraTrasformWithIndex(1);
             }
-            else if (key == 2)
+            else if (key == 2)//down
             {
-
+                setCameraTrasformWithIndex(7);
             }
-            else if (key == 3)
+            else if (key == 3)//right
             {
-
+                setCameraTrasformWithIndex(0);
             }
-            else if (key == 4)
+            else if (key == 4)//left
             {
-
+                setCameraTrasformWithIndex(2);
             }
         }
         //cameraIndex = 4
         if (cameraIndex == 4)
         {
-            if (key == 1)
+            if (key == 1)//up 
             {
-
+                setCameraTrasformWithIndex(0);
             }
-            else if (key == 2)
+            else if (key == 2)//down
             {
-
+                setCameraTrasformWithIndex(6);
             }
-            else if (key == 3)
+            else if (key == 3)//right
             {
-
+                setCameraTrasformWithIndex(5);
             }
-            else if (key == 4)
+            else if (key == 4)//left
             {
-
+                setCameraTrasformWithIndex(7);
             }
         }
         //cameraIndex = 5
         if (cameraIndex == 5)
         {
-            if (key == 1)
+            if (key == 1)//up 
             {
-
+                setCameraTrasformWithIndex(1);
             }
-            else if (key == 2)
+            else if (key == 2)//down
             {
-
+                setCameraTrasformWithIndex(7);
             }
-            else if (key == 3)
+            else if (key == 3)//right
             {
-
+                setCameraTrasformWithIndex(6);
             }
-            else if (key == 4)
+            else if (key == 4)//left
             {
-
+                setCameraTrasformWithIndex(4);
             }
         }
         //cameraIndex = 6
         if (cameraIndex == 6)
         {
-            if (key == 1)
+            if (key == 1)//up 
             {
-
+                setCameraTrasformWithIndex(2);
             }
-            else if (key == 2)
+            else if (key == 2)//down
             {
-
+                setCameraTrasformWithIndex(4);
             }
-            else if (key == 3)
+            else if (key == 3)//right
             {
-
+                setCameraTrasformWithIndex(7);
             }
-            else if (key == 4)
+            else if (key == 4)//left
             {
-
+                setCameraTrasformWithIndex(5);
             }
         }
         //cameraIndex = 7
         if (cameraIndex == 7)
         {
-            if (key == 1)
+            if (key == 1)//up 
             {
-
+                setCameraTrasformWithIndex(3);
             }
-            else if (key == 2)
+            else if (key == 2)//down
             {
-
+                setCameraTrasformWithIndex(5);
             }
-            else if (key == 3)
+            else if (key == 3)//right
             {
-
+                setCameraTrasformWithIndex(4);
             }
-            else if (key == 4)
+            else if (key == 4)//left
             {
-
+                setCameraTrasformWithIndex(6);
             }
         }
+    }
+
+    private void setCameraTrasformWithIndex(int index)
+    {
+        camera.transform.position = cameraTransforms[index].position;
+        camera.transform.rotation = cameraTransforms[index].rotation;
     }
 }
