@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 3256750376669371062}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 11.714075, y: 26.565346, z: -2247.9058}
-  m_LocalScale: {x: 2, y: 0.03417844, z: 2}
+  m_LocalScale: {x: 1.7004145, y: 0.03417844, z: 1.9713504}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -150,3 +150,5 @@ MonoBehaviour:
   steerSpeed: 90
   gap: 3
   fark: 1
+  isBurn: 1
+  distance: 3.4028235e+38

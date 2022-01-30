@@ -100,7 +100,7 @@ namespace Snake.Reklam
                     Debug.Log("AD " + placementId + " COMPLETE");
                     //reklam izlendimi 1 ise izlendi, 0 ise izlenmedi
                     PlayerPrefs.SetInt("reklam izlendimi", 1);
-                    gamePanelController.openGamePanel();
+                    gamePanelController.closeAdsPanel();
                     gameData.GameState = true;
                 }
                 else if (showResult == ShowResult.Skipped)

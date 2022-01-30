@@ -4,7 +4,7 @@ using UnityEngine;
 using Snake.Data;
 using Snake.UIController;
 
-public class SnakeMoveController : MonoBehaviour
+public class SnakeMoveController : MonoBehaviour, AdsStatae
 {
     [SerializeField] private GameData gameData;
     [SerializeField] private GameObject BodyPrefabRed;
@@ -13,11 +13,13 @@ public class SnakeMoveController : MonoBehaviour
     [SerializeField] private GamePanelController gamePanelController;
 
     private List<GameObject> bodyParts = new List<GameObject>();
+    private List<GameObject> snakeTails = new List<GameObject>();
     private List<Vector3> positionHistory = new List<Vector3>();
 
     private Vector3 localScale;
-    private int tailLength;
     private float snakeLength;
+    private Vector3 snakeFirstPosition;
+    private Quaternion snakeFirstRotation;
 
     public float moveSpeed = 5;
     public float steerSpeed = 90;
@@ -27,14 +29,13 @@ public class SnakeMoveController : MonoBehaviour
     private bool rigtFlag = false;
     private bool leftFlag = false;
 
+    public bool isBurn = true;
+    public float distance = float.MaxValue;
+
     // Start is called before the first frame update
     void Start()
     {
-        localScale = BodyPrefab.transform.localScale;
-        for (int i = 0;i<= 100; i++)
-        {
-            growSnake();
-        }
+        
     }
 
     // Update is called once per frame
@@ -49,6 +50,41 @@ public class SnakeMoveController : MonoBehaviour
             storePositionHistory();
 
             moveBodyParts();
+
+            didTheSnakeBurn();
+        }
+    }
+
+    private void didTheSnakeBurn()
+    {
+        distance = float.MaxValue;
+        foreach (GameObject snakeTail in snakeTails)
+        {
+            if ((snakeTail.transform.position - transform.position).magnitude < distance)
+            {
+                distance = (snakeTail.transform.position - transform.position).magnitude;
+            }
+        }
+
+        if (distance < 1 && isBurn)
+        {
+            if (PlayerPrefs.GetInt("reklam izlendimi", 0) == 0)
+            {
+                gamePanelController.openAdsPanel(this);
+            }
+            else
+            {
+                finishGame();
+                gamePanelController.openEndPanel();
+            }
+            rigtFlag = false;
+            leftFlag = false;
+            isBurn = false;
+        }
+
+        if(distance > 2)
+        {
+            isBurn = true;
         }
     }
 
@@ -85,27 +121,7 @@ public class SnakeMoveController : MonoBehaviour
             {
                 Vector3 point = positionHistory[Mathf.Min(index * gap, positionHistory.Count - 1)];
                 body.transform.position = point;
-                if(index >= snakeLength - tailLength)
-                {
-                    if(index >= snakeLength - tailLength / 2)
-                    {
-                        if (index >= snakeLength - tailLength / 4)
-                        {
-                            //yýlanýn uzunluðunun 1/8'ü son kýsým
-                            body.transform.localScale = localScale * (snakeLength / (snakeLength / 2 + index + 80));
-                        }
-                        else
-                        {
-                            //yýlanýn uzunluðunun 1/8'ü
-                            body.transform.localScale = localScale * (snakeLength / (snakeLength / 2 + index + 40));
-                        }
-                    }
-                    else
-                    {
-                        //yýlanýn uzunluðunun 1/4'ü
-                        body.transform.localScale = localScale * (snakeLength / (snakeLength / 2 + index + 20));
-                    }
-                }
+                body.transform.localScale = localScale * (snakeLength / (snakeLength + index));
                 index++;
             }
         }
@@ -123,11 +139,6 @@ public class SnakeMoveController : MonoBehaviour
             growSnake();
             growSnake();
         }
-        Debug.Log(collision.gameObject.name);
-        if (collision.gameObject.name.Equals("snakeBlue(Clone)"))
-        {
-            gamePanelController.openAdsPanel();
-        }
     }
 
     private void growSnake()
@@ -141,8 +152,11 @@ public class SnakeMoveController : MonoBehaviour
         {
             body = Instantiate(BodyPrefab);
         }
+        if(bodyParts.Count > 25)
+        {
+            snakeTails.Add(body);
+        }
         bodyParts.Add(body);
-        tailLength = bodyParts.Count / 2;
         snakeLength = bodyParts.Count;
     }
 
@@ -174,5 +188,34 @@ public class SnakeMoveController : MonoBehaviour
     public void rightUp()
     {
         rigtFlag = false;
+    }
+
+    public void adsSkiped()
+    {
+        finishGame();
+    }
+
+    public void startGame()
+    {
+        snakeFirstPosition = transform.position;
+        snakeFirstRotation = transform.rotation;
+        localScale = BodyPrefab.transform.localScale;
+        for (int i = 0; i <= 25; i++)
+        {
+            growSnake();
+        }
+    }
+    private void finishGame()
+    {
+        Debug.Log("finishGame");
+        transform.position = snakeFirstPosition;
+        transform.rotation = snakeFirstRotation;
+        foreach(GameObject g in bodyParts)
+        {
+            Destroy(g);
+        }
+        bodyParts.Clear();
+        snakeTails.Clear();
+        positionHistory.Clear();
     }
 }

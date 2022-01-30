@@ -5,8 +5,10 @@ using UnityEngine.UI;
 
 namespace Snake.UIController
 { 
-    public class GamePanelController : MonoBehaviour
+    public class GamePanelController : MonoBehaviour, AdsStatae
     {
+        private AdsStatae adsStatae;
+
         [Header("Panels")]
         [SerializeField] private GameObject menuPanel;
         [SerializeField] private GameObject gameSelectPanel;
@@ -28,8 +30,15 @@ namespace Snake.UIController
         [SerializeField] private Toggle toggleTR;
         [SerializeField] private Toggle toggleEN;
 
+        [Header("YonBtnController")]
+        [SerializeField] private YonBtnController yonBtnController;
+
+        [Header("CameraMovementController")]
+        [SerializeField] private CameraMovementController cameraMovementController;
+
         private void Start()
         {
+            adsStatae = this;
             setToggleLanguage();
             openMenuPanel();
         }
@@ -38,6 +47,16 @@ namespace Snake.UIController
         {
             menuPanel.SetActive(true);
             adsPanel.SetActive(false);
+            endPanel.SetActive(false);
+            sharePanel.SetActive(false);
+            gamePanel.SetActive(false);
+            stopeGame();
+        }
+        public void openAdsPanel(AdsStatae adsStatae)
+        {
+            this.adsStatae = adsStatae;
+            menuPanel.SetActive(false);
+            adsPanel.SetActive(true);
             endPanel.SetActive(false);
             sharePanel.SetActive(false);
             gamePanel.SetActive(false);
@@ -52,8 +71,21 @@ namespace Snake.UIController
             gamePanel.SetActive(false);
             stopeGame();
         }
+
+        public void closeAdsPanel()
+        {
+            menuPanel.SetActive(false);
+            adsPanel.SetActive(false);
+            endPanel.SetActive(false);
+            sharePanel.SetActive(false);
+            gamePanel.SetActive(true);
+            adsCircleBar.SetActive(false);
+            resumeGame();
+        }
+
         public void openEndPanel()
         {
+            adsStatae.adsSkiped();
             menuPanel.SetActive(false);
             adsPanel.SetActive(false);
             endPanel.SetActive(true);
@@ -77,6 +109,7 @@ namespace Snake.UIController
         }
         public void openGamePanel()
         {
+            PlayerPrefs.SetInt("reklam izlendimi", 0);
             menuPanel.SetActive(false);
             adsPanel.SetActive(false);
             endPanel.SetActive(false);
@@ -147,7 +180,10 @@ namespace Snake.UIController
 
         public void resumeGame()
         {
+            cameraMovementController.setCameraTrasformWithIndex(0);
             gameData.GameState = true;
+            yonBtnController.leftUp();
+            yonBtnController.rightUp();
         }
 
         private void setToggleLanguage()
@@ -176,5 +212,9 @@ namespace Snake.UIController
             setToggleLanguage();
         }
 
+        public void adsSkiped()
+        {
+            
+        }
     }
 }

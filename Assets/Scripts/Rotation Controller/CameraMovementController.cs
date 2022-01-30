@@ -48,28 +48,24 @@ public class CameraMovementController : MonoBehaviour, IPointerDownHandler, IPoi
             if (distanceY < 0 && Mathf.Abs(distanceY) > Mathf.Abs(distanceX))
             {
                 //up
-                Debug.Log("up");
                 setSelectedCameraTransform(1);
             }
 
             if (distanceY > 0 && Mathf.Abs(distanceY) > Mathf.Abs(distanceX))
             {
                 //down
-                Debug.Log("down");
                 setSelectedCameraTransform(2);
             }
 
             if (distanceX < 0 && Mathf.Abs(distanceX) > Mathf.Abs(distanceY))
             {
                 //right
-                Debug.Log("right");
                 setSelectedCameraTransform(3);
             }
 
             if (distanceX > 0 && Mathf.Abs(distanceX) > Mathf.Abs(distanceY))
             {
                 //left
-                Debug.Log("left");
                 setSelectedCameraTransform(4);
             }
         }
@@ -83,7 +79,6 @@ public class CameraMovementController : MonoBehaviour, IPointerDownHandler, IPoi
             if (camera.transform.position == cameraTransforms[i].position)
             {
                 cameraIndex = i;
-                Debug.Log("cameraIndex  " + cameraIndex + " key " + key);
             }
         }
 
@@ -249,7 +244,7 @@ public class CameraMovementController : MonoBehaviour, IPointerDownHandler, IPoi
         }
     }
 
-    private void setCameraTrasformWithIndex(int index)
+    public void setCameraTrasformWithIndex(int index)
     {
         camera.transform.position = cameraTransforms[index].position;
         camera.transform.rotation = cameraTransforms[index].rotation;
