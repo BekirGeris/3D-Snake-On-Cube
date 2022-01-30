@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 025f861bc39961b4d805b11c161bb4e9, type: 3}
+  m_Name: Snake Data
+  m_EditorClassIdentifier: 
+  bodyRed: {fileID: 7749668090724620000, guid: f48aaceae43dfe4409279dd521a0153b, type: 3}
+  bodyBlue: {fileID: 6072096006652925477, guid: 440722dcf5e7e3a429961677125fb2e7,
+    type: 3}
+  bodyGreen: {fileID: 6170511197566494697, guid: f3c99293728d160439e0363146c3d411,
+    type: 3}
+  bodyYellow: {fileID: 7749668090724620000, guid: 2a8969d2aaba0624da9572399f9c2011,
+    type: 3}
+  bodyPurple: {fileID: 7749668090724620000, guid: 4bd5eb44ef3c5a447a5267ed42c0c2e3,
+    type: 3}

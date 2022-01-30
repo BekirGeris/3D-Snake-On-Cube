@@ -7,8 +7,7 @@ using Snake.UIController;
 public class SnakeMoveController : MonoBehaviour, AdsStatae
 {
     [SerializeField] private GameData gameData;
-    [SerializeField] private GameObject BodyPrefabRed;
-    [SerializeField] private GameObject BodyPrefab;
+    [SerializeField] private SnakeData snakeData;
     [SerializeField] private EatController eatController;
     [SerializeField] private GamePanelController gamePanelController;
 
@@ -24,13 +23,12 @@ public class SnakeMoveController : MonoBehaviour, AdsStatae
     public float moveSpeed = 5;
     public float steerSpeed = 90;
     public int gap = Mathf.Abs(10);
-    public int fark = 5;
 
     private bool rigtFlag = false;
     private bool leftFlag = false;
 
-    public bool isBurn = true;
-    public float distance = float.MaxValue;
+    private bool isBurn = true;
+    private float distance = float.MaxValue;
 
     // Start is called before the first frame update
     void Start()
@@ -114,16 +112,13 @@ public class SnakeMoveController : MonoBehaviour, AdsStatae
     private void moveBodyParts()
     { //
         //move body parts
-        if (positionHistory.Count > fark)
+        int index = 0;
+        foreach (var body in bodyParts)
         {
-            int index = fark;
-            foreach (var body in bodyParts)
-            {
-                Vector3 point = positionHistory[Mathf.Min(index * gap, positionHistory.Count - 1)];
-                body.transform.position = point;
-                body.transform.localScale = localScale * (snakeLength / (snakeLength + index));
-                index++;
-            }
+            Vector3 point = positionHistory[Mathf.Min(index * gap, positionHistory.Count - 1)];
+            body.transform.position = point;
+            body.transform.localScale = localScale * (snakeLength / (snakeLength + index));
+            index++;
         }
     }
 
@@ -146,13 +141,20 @@ public class SnakeMoveController : MonoBehaviour, AdsStatae
         GameObject body;
         if (bodyParts.Count <= 5)
         {
-            body = Instantiate(BodyPrefabRed);
+            body = Instantiate(snakeData.bodyRed);
         }
         else
         {
-            body = Instantiate(BodyPrefab);
+            if (bodyParts.Count % 2 == 0)
+            {
+                body = Instantiate(snakeData.bodyBlue);
+            }
+            else
+            {
+                body = Instantiate(snakeData.bodyRed);
+            }
         }
-        if(bodyParts.Count > 25)
+        if (bodyParts.Count > 25)
         {
             snakeTails.Add(body);
         }
@@ -199,13 +201,13 @@ public class SnakeMoveController : MonoBehaviour, AdsStatae
     {
         snakeFirstPosition = transform.position;
         snakeFirstRotation = transform.rotation;
-        localScale = BodyPrefab.transform.localScale;
+        localScale = snakeData.bodyBlue.transform.localScale;
         for (int i = 0; i <= 25; i++)
         {
             growSnake();
         }
     }
-    private void finishGame()
+    public void finishGame()
     {
         Debug.Log("finishGame");
         transform.position = snakeFirstPosition;

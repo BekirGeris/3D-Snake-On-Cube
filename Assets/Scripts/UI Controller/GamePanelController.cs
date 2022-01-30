@@ -110,6 +110,7 @@ namespace Snake.UIController
         public void openGamePanel()
         {
             PlayerPrefs.SetInt("reklam izlendimi", 0);
+            cameraMovementController.setCameraTrasformWithIndex(0);
             menuPanel.SetActive(false);
             adsPanel.SetActive(false);
             endPanel.SetActive(false);
@@ -180,7 +181,6 @@ namespace Snake.UIController
 
         public void resumeGame()
         {
-            cameraMovementController.setCameraTrasformWithIndex(0);
             gameData.GameState = true;
             yonBtnController.leftUp();
             yonBtnController.rightUp();
