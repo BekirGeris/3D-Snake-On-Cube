@@ -20,10 +20,15 @@ public class Eat : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.name.Equals("snakeBlue(Clone)"))
+        string collisionName = collision.gameObject.name;
+        if (collisionName.Length > 7)
         {
-            gameObject.SetActive(false);
-            eatController.randomItemOpenFromList();
+            Debug.Log(collisionName.Substring(collisionName.Length - 7));
+            if (collisionName.Substring(collisionName.Length - 7).Equals("(Clone)"))
+            {
+                gameObject.SetActive(false);
+                eatController.randomItemOpenFromList();
+            }
         }
     }
 

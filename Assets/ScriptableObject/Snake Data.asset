@@ -21,3 +21,7 @@ MonoBehaviour:
     type: 3}
   bodyPurple: {fileID: 7749668090724620000, guid: 4bd5eb44ef3c5a447a5267ed42c0c2e3,
     type: 3}
+  bodyBlack: {fileID: 7749668090724620000, guid: f8ef9bb2fc02a8b4cabdeb70d4b4e789,
+    type: 3}
+  bodyTurquoise: {fileID: 7749668090724620000, guid: 5024959bfe4106e4a930f286b132c514,
+    type: 3}

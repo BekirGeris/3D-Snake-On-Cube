@@ -155,6 +155,18 @@ public class SnakeMoveController : MonoBehaviour, AdsStatae
             {
                 body = Instantiate(snakeData.bodyPurple);
             }
+            else if (PlayerPrefs.GetInt("selectImage", -1) == 4)
+            {
+                body = Instantiate(snakeData.bodyGreen);
+            }
+            else if (PlayerPrefs.GetInt("selectImage", -1) == 5)
+            {
+                body = Instantiate(snakeData.bodyRed);
+            }
+            else if (PlayerPrefs.GetInt("selectImage", -1) == 6)
+            {
+                body = Instantiate(snakeData.bodyTurquoise);
+            }
             else
             {
                 body = Instantiate(snakeData.bodyRed);
@@ -173,6 +185,18 @@ public class SnakeMoveController : MonoBehaviour, AdsStatae
             else if (PlayerPrefs.GetInt("selectImage", -1) == 3)
             {
                 body = Instantiate(snakeData.bodyGreen);
+            }
+            else if (PlayerPrefs.GetInt("selectImage", -1) == 4)
+            {
+                body = Instantiate(snakeData.bodyBlack);
+            }
+            else if (PlayerPrefs.GetInt("selectImage", -1) == 5)
+            {
+                body = Instantiate(snakeData.bodyBlack);
+            }
+            else if (PlayerPrefs.GetInt("selectImage", -1) == 6)
+            {
+                body = Instantiate(snakeData.bodyBlack);
             }
             else
             {
