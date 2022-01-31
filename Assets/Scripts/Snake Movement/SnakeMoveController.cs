@@ -30,12 +30,6 @@ public class SnakeMoveController : MonoBehaviour, AdsStatae
     private bool isBurn = true;
     private float distance = float.MaxValue;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -133,27 +127,59 @@ public class SnakeMoveController : MonoBehaviour, AdsStatae
             growSnake();
             growSnake();
             growSnake();
+            if(bodyParts.Count <= 300)
+            {
+                growSnake();
+                growSnake();
+                growSnake();
+                growSnake();
+                growSnake();
+            }
         }
     }
 
     private void growSnake()
     {
         GameObject body;
-        if (bodyParts.Count <= 5)
+        if (bodyParts.Count <= 5 || bodyParts.Count % 2 == 0)
         {
-            body = Instantiate(snakeData.bodyRed);
-        }
-        else
-        {
-            if (bodyParts.Count % 2 == 0)
+            if(PlayerPrefs.GetInt("selectImage", -1) == 1)
             {
-                body = Instantiate(snakeData.bodyBlue);
+                body = Instantiate(snakeData.bodyRed);
+            }
+            else if (PlayerPrefs.GetInt("selectImage", -1) == 2)
+            {
+                body = Instantiate(snakeData.bodyYellow);
+            }
+            else if (PlayerPrefs.GetInt("selectImage", -1) == 3)
+            {
+                body = Instantiate(snakeData.bodyPurple);
             }
             else
             {
                 body = Instantiate(snakeData.bodyRed);
             }
         }
+        else
+        {
+            if (PlayerPrefs.GetInt("selectImage", -1) == 1)
+            {
+                body = Instantiate(snakeData.bodyGrey);
+            }
+            else if (PlayerPrefs.GetInt("selectImage", -1) == 2)
+            {
+                body = Instantiate(snakeData.bodyGreen);
+            }
+            else if (PlayerPrefs.GetInt("selectImage", -1) == 3)
+            {
+                body = Instantiate(snakeData.bodyGreen);
+            }
+            else
+            {
+                body = Instantiate(snakeData.bodyGrey);
+            }
+        }
+
         if (bodyParts.Count > 25)
         {
             snakeTails.Add(body);
@@ -201,7 +227,7 @@ public class SnakeMoveController : MonoBehaviour, AdsStatae
     {
         snakeFirstPosition = transform.position;
         snakeFirstRotation = transform.rotation;
-        localScale = snakeData.bodyBlue.transform.localScale;
+        localScale = snakeData.bodyGrey.transform.localScale;
         for (int i = 0; i <= 25; i++)
         {
             growSnake();

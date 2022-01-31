@@ -6,7 +6,7 @@ using UnityEngine;
 public class SnakeData : ScriptableObject
 {
     public GameObject bodyRed;
-    public GameObject bodyBlue;
+    public GameObject bodyGrey;
     public GameObject bodyGreen;
     public GameObject bodyYellow;
     public GameObject bodyPurple;

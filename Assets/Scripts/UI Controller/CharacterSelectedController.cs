@@ -52,6 +52,7 @@ public class CharacterSelectedController : MonoBehaviour
             if (imageNo == PlayerPrefs.GetInt(i.ToString(), -1))
             {
                 PlayerPrefs.SetInt("selectImage", imageNo);
+                Debug.Log("selectImage" + PlayerPrefs.GetInt("selectImage", -1));
                 init();
                 return;
             }
@@ -65,6 +66,7 @@ public class CharacterSelectedController : MonoBehaviour
     {
         PlayerPrefs.SetInt(selectedImageNoForSale.ToString(), selectedImageNoForSale);
         PlayerPrefs.SetInt("selectImage", selectedImageNoForSale);
+        Debug.Log("selectImage" + PlayerPrefs.GetInt("selectImage", -1));
         init();
     }
 }

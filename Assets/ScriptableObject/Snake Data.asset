@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Snake Data
   m_EditorClassIdentifier: 
   bodyRed: {fileID: 7749668090724620000, guid: f48aaceae43dfe4409279dd521a0153b, type: 3}
-  bodyBlue: {fileID: 6072096006652925477, guid: 440722dcf5e7e3a429961677125fb2e7,
+  bodyGrey: {fileID: 6072096006652925477, guid: 440722dcf5e7e3a429961677125fb2e7,
     type: 3}
   bodyGreen: {fileID: 6170511197566494697, guid: f3c99293728d160439e0363146c3d411,
     type: 3}

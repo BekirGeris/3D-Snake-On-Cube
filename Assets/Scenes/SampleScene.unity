@@ -34663,18 +34663,6 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 3537634310780418651}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1737576981 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3537634312283072590, guid: 7bec87b360a2c3f459677a2eef95ad4d,
-    type: 3}
-  m_PrefabInstance: {fileID: 3537634310780418651}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1737576977}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8247357e90bf23c40822e40a2a55a088, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1746281652
 GameObject:
   m_ObjectHideFlags: 0
@@ -43485,11 +43473,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameSelectPanel
       objectReference: {fileID: 0}
-    - target: {fileID: 3537634312283072586, guid: 7bec87b360a2c3f459677a2eef95ad4d,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3537634312283072590, guid: 7bec87b360a2c3f459677a2eef95ad4d,
         type: 3}
       propertyPath: gamePanelController
@@ -43926,7 +43909,7 @@ PrefabInstance:
         type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
-      objectReference: {fileID: 1737576981}
+      objectReference: {fileID: 0}
     - target: {fileID: 8861990715552204662, guid: f808c0b463c28bd41b27a7230acccf0f,
         type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -43941,6 +43924,6 @@ PrefabInstance:
         type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
-      objectReference: {fileID: 1737576981}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f808c0b463c28bd41b27a7230acccf0f, type: 3}
