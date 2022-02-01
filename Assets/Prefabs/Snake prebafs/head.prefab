@@ -117,6 +117,7 @@ MonoBehaviour:
   snakeData: {fileID: 11400000, guid: d2527658c3c3b794982c574e871a87e6, type: 2}
   eatController: {fileID: 0}
   gamePanelController: {fileID: 0}
+  monnyController: {fileID: 0}
   moveSpeed: 6
   steerSpeed: 90
   gap: 2

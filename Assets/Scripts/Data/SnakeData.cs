@@ -12,4 +12,5 @@ public class SnakeData : ScriptableObject
     public GameObject bodyPurple;
     public GameObject bodyBlack;
     public GameObject bodyTurquoise;
+    public GameObject bodyBlue;
 }

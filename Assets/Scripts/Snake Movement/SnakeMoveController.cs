@@ -10,6 +10,7 @@ public class SnakeMoveController : MonoBehaviour, AdsStatae
     [SerializeField] private SnakeData snakeData;
     [SerializeField] private EatController eatController;
     [SerializeField] private GamePanelController gamePanelController;
+    [SerializeField] private MonnyController monnyController;
 
     private List<GameObject> bodyParts = new List<GameObject>();
     private List<GameObject> snakeTails = new List<GameObject>();
@@ -17,7 +18,7 @@ public class SnakeMoveController : MonoBehaviour, AdsStatae
 
     private Vector3 localScale;
     private float snakeLength;
-    private Vector3 snakeFirstPosition;
+    private Vector3 snakeFirstPosition;     
     private Quaternion snakeFirstRotation;
 
     public float moveSpeed = 5;
@@ -29,6 +30,20 @@ public class SnakeMoveController : MonoBehaviour, AdsStatae
 
     private bool isBurn = true;
     private float distance = float.MaxValue;
+
+    private int gameMonny;
+
+    public void startGame()
+    {
+        snakeFirstPosition = transform.position;
+        snakeFirstRotation = transform.rotation;
+        localScale = snakeData.bodyGrey.transform.localScale;
+        for (int i = 0; i <= 25; i++)
+        {
+            growSnake();
+        }
+        gameMonny = 0;
+    }
 
     // Update is called once per frame
     void Update()
@@ -120,6 +135,7 @@ public class SnakeMoveController : MonoBehaviour, AdsStatae
     {
         if(collision.gameObject.name.Equals("eat"))
         {
+            gameMonny++;
             collision.gameObject.SetActive(false);
             eatController.randomItemOpenFromList();
             growSnake();
@@ -127,8 +143,13 @@ public class SnakeMoveController : MonoBehaviour, AdsStatae
             growSnake();
             growSnake();
             growSnake();
-            if(bodyParts.Count <= 300)
+            if(bodyParts.Count <= 500)
             {
+                growSnake();
+                growSnake();
+                growSnake();
+                growSnake();
+                growSnake();
                 growSnake();
                 growSnake();
                 growSnake();
@@ -167,6 +188,22 @@ public class SnakeMoveController : MonoBehaviour, AdsStatae
             {
                 body = Instantiate(snakeData.bodyTurquoise);
             }
+            else if (PlayerPrefs.GetInt("selectImage", -1) == 7)
+            {
+                body = Instantiate(snakeData.bodyBlack);
+            }
+            else if (PlayerPrefs.GetInt("selectImage", -1) == 8)
+            {
+                body = Instantiate(snakeData.bodyBlue);
+            }
+            else if (PlayerPrefs.GetInt("selectImage", -1) == 9)
+            {
+                body = Instantiate(snakeData.bodyBlack);
+            }
+            else if (PlayerPrefs.GetInt("selectImage", -1) == 10)
+            {
+                body = Instantiate(snakeData.bodyGrey);
+            }
             else
             {
                 body = Instantiate(snakeData.bodyRed);
@@ -197,6 +234,22 @@ public class SnakeMoveController : MonoBehaviour, AdsStatae
             else if (PlayerPrefs.GetInt("selectImage", -1) == 6)
             {
                 body = Instantiate(snakeData.bodyBlack);
+            }
+            else if (PlayerPrefs.GetInt("selectImage", -1) == 7)
+            {
+                body = Instantiate(snakeData.bodyRed);
+            }
+            else if (PlayerPrefs.GetInt("selectImage", -1) == 8)
+            {
+                body = Instantiate(snakeData.bodyGreen);
+            }
+            else if (PlayerPrefs.GetInt("selectImage", -1) == 9)
+            {
+                body = Instantiate(snakeData.bodyYellow);
+            }
+            else if (PlayerPrefs.GetInt("selectImage", -1) == 10)
+            {
+                body = Instantiate(snakeData.bodyPurple);
             }
             else
             {
@@ -247,19 +300,10 @@ public class SnakeMoveController : MonoBehaviour, AdsStatae
         finishGame();
     }
 
-    public void startGame()
-    {
-        snakeFirstPosition = transform.position;
-        snakeFirstRotation = transform.rotation;
-        localScale = snakeData.bodyGrey.transform.localScale;
-        for (int i = 0; i <= 25; i++)
-        {
-            growSnake();
-        }
-    }
     public void finishGame()
     {
         Debug.Log("finishGame");
+        monnyController.increaseMonny(gameMonny);
         transform.position = snakeFirstPosition;
         transform.rotation = snakeFirstRotation;
         foreach(GameObject g in bodyParts)

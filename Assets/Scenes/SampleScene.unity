@@ -20257,6 +20257,11 @@ PrefabInstance:
       objectReference: {fileID: 1534626800}
     - target: {fileID: 2442505706729214188, guid: 6feb4a8f4547c3943ad64bbe0c626c44,
         type: 3}
+      propertyPath: monnyController
+      value: 
+      objectReference: {fileID: 411000136}
+    - target: {fileID: 2442505706729214188, guid: 6feb4a8f4547c3943ad64bbe0c626c44,
+        type: 3}
       propertyPath: gamePanelController
       value: 
       objectReference: {fileID: 2043131685}
@@ -20313,11 +20318,6 @@ PrefabInstance:
     - target: {fileID: 3256750376669371057, guid: 6feb4a8f4547c3943ad64bbe0c626c44,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3256750376669371059, guid: 6feb4a8f4547c3943ad64bbe0c626c44,
-        type: 3}
-      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3256750376669371062, guid: 6feb4a8f4547c3943ad64bbe0c626c44,

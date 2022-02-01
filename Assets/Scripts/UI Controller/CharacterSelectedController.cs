@@ -3,14 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using Snake.UIController;
-using Snake.Toast;
 using Snake.Utiles;
 
 public class CharacterSelectedController : MonoBehaviour
 {
 
     [SerializeField] private GamePanelController gamePanelController;
-
     [SerializeField] private List<GameObject> chactarImages;
     [SerializeField] private List<TextMeshProUGUI> buys;
     [SerializeField] private TextMeshProUGUI price;
@@ -22,7 +20,10 @@ public class CharacterSelectedController : MonoBehaviour
     void Start()
     {
         init();
-        buying();
+        if(PlayerPrefs.GetInt("selectImage", -1) == -1)
+        {
+            buying();
+        }
     }
 
     public void init()
@@ -52,7 +53,6 @@ public class CharacterSelectedController : MonoBehaviour
             if (imageNo == PlayerPrefs.GetInt(i.ToString(), -1))
             {
                 PlayerPrefs.SetInt("selectImage", imageNo);
-                Debug.Log("selectImage" + PlayerPrefs.GetInt("selectImage", -1));
                 init();
                 return;
             }
@@ -66,7 +66,6 @@ public class CharacterSelectedController : MonoBehaviour
     {
         PlayerPrefs.SetInt(selectedImageNoForSale.ToString(), selectedImageNoForSale);
         PlayerPrefs.SetInt("selectImage", selectedImageNoForSale);
-        Debug.Log("selectImage" + PlayerPrefs.GetInt("selectImage", -1));
         init();
     }
 }
