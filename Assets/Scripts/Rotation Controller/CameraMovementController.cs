@@ -248,5 +248,8 @@ public class CameraMovementController : MonoBehaviour, IPointerDownHandler, IPoi
     {
         camera.transform.position = cameraTransforms[index].position;
         camera.transform.rotation = cameraTransforms[index].rotation;
+
+       //float step = moveSpeed * Time.deltaTime; // calculate distance to move
+        //camera.transform.position = Vector3.MoveTowards(camera.transform.position, cameraTransforms[index].position, step);
     }
 }

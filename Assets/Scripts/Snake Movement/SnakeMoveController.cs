@@ -302,7 +302,6 @@ public class SnakeMoveController : MonoBehaviour, AdsStatae
 
     public void finishGame()
     {
-        Debug.Log("finishGame");
         monnyController.increaseMonny(gameMonny);
         transform.position = snakeFirstPosition;
         transform.rotation = snakeFirstRotation;

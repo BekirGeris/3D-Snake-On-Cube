@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EatController : MonoBehaviour
 {
-    public Eat[] eats;
+    private Eat[] eats;
 
     
     // Start is called before the first frame update
